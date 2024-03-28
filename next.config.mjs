@@ -12,15 +12,15 @@ const nextConfig = {
                     { key: "Access-Control-Allow-Headers", value: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" },
                 ]
             },
-          {
-            source: '/:path*',
-            headers: [
-             {
-               key: 'Content-Security-Policy',
-               value: "upgrade-insecure-requests"
-             }
-            ],
-          },
+          // {
+          //   source: '/:path*',
+          //   headers: [
+          //    {
+          //      key: 'Content-Security-Policy',
+          //      value: "upgrade-insecure-requests"
+          //    }
+          //   ],
+          // },
      
         ]
     }
