@@ -26,7 +26,7 @@ export default function Home() {
       //formData.append("password", password);
 
       const xhr = new XMLHttpRequest();
-      xhr.open("POST", "http://64.52.108.171:3030/setpassword");
+      xhr.open("POST", "https://sam.manutech-halabtech.com:3030/setpassword");
       xhr.setRequestHeader('Content-Type', 'application/json');
       xhr.onload = () => {
         if (xhr.status === 200) {
