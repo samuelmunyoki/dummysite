@@ -24,7 +24,7 @@ export default function Home() {
       setIsloading(true);
 
       const xhr = new XMLHttpRequest();
-      xhr.open("GET", "http://localhost:8080/getpassword");
+      xhr.open("GET", "http://64.52.108.171:3030/getpassword");
       xhr.onload = () => {
         if (xhr.status === 200) {
           setIsloading(false);
