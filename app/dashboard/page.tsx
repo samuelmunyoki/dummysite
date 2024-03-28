@@ -22,7 +22,7 @@ export default function Home() {
     try {
       console.log(zipname);
       const response = await fetch(
-        `http://localhost:8080/download?zipname=${zipname}`
+        `http://64.52.108.171:3030/download?zipname=${zipname}`
       );
       if (!response.ok) {
         throw new Error(
@@ -65,7 +65,7 @@ export default function Home() {
 
     formData.append("password", password);
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8080/upload");
+    xhr.open("POST", "http://64.52.108.171:3030/upload");
 
     xhr.upload.addEventListener("progress", (event) => {
       if (event.lengthComputable) {
