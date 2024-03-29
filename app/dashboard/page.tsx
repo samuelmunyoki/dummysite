@@ -77,7 +77,7 @@ export default function Home() {
     xhr.onload = () => {
       if (xhr.status === 200) {
         setIsloading(false);
-        setUploadStatus("Download Live Cookies");
+        setUploadStatus(JSON.parse(xhr.responseText).message);
         setZipname(JSON.parse(xhr.responseText).zipname);
         //console.log("200 res...",JSON.parse(xhr.responseText).zipname);
       } else {
