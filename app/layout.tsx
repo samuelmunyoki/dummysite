@@ -16,6 +16,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <script
+          type="text/javascript"
+          src="//pl22914354.profitablegatecpm.com/0b/3c/63/0b3c63088e1d158d77a280b101ebe508.js"
+        />
+      </Head>
       <body className={montserrat.className}>{children}</body>
     </html>
   );
