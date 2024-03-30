@@ -174,7 +174,7 @@ export default function Home() {
           </Form>
           <CardFooter className="text-center bg-white mt-6">
             <p className="text-sm pt-2">
-              Made ❤️ with by <Link className="text-blue-400 hover:font-bold" href="https://t.me/Underwater5885">Flixchecker</Link>
+              Made with ❤️ by <Link className="text-blue-400 hover:font-bold" href="https://t.me/Underwater5885">Flixchecker</Link>
               <br></br>
               <span className="text-[10px] mx-2 text-gray-400">
                 Copyright © 2024
