@@ -37,7 +37,7 @@ export default function Home() {
       // Create a temporary anchor element
       const downloadLink = document.createElement("a");
       downloadLink.href = window.URL.createObjectURL(blob);
-      downloadLink.setAttribute("download", "@techielove.zip");
+      downloadLink.setAttribute("download", "@dailynetflixcookies.in.zip");
 
       // Append the anchor to the body and trigger the click event
       document.body.appendChild(downloadLink);
