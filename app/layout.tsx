@@ -5,8 +5,8 @@ import "./globals.css";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: " DailyNetflixCookies.in",
-  description: "Netflix cookies",
+  title: " Netflix Cookies Check",
+  description: "Checker site",
 };
 
 export default function RootLayout({
@@ -17,10 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script
-          type="text/javascript"
-          src="//pl22914354.profitablegatecpm.com/0b/3c/63/0b3c63088e1d158d77a280b101ebe508.js" async 
-        />
+        
       </head>
       
       <body className={montserrat.className}>{children}</body>
