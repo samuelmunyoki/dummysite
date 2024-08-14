@@ -22,7 +22,7 @@ export default function Home() {
     try {
       console.log(zipname);
       const response = await fetch(
-        `https://sam.manutech-halabtech.com:3030/download?zipname=${zipname}`
+        `http://meow.catway.org:3030/download?zipname=${zipname}`
       );
       if (!response.ok) {
         throw new Error(
@@ -53,44 +53,88 @@ export default function Home() {
       throw error;
     }
   }
-
   const handleUpload = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setUploadStatus("");
     setIsloading(true);
+  
     const fileInput = document.getElementById("formFile") as HTMLInputElement;
     const file = fileInput.files![0];
     const formData = new FormData();
     formData.append("file", file);
-
     formData.append("password", password);
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST",  "https://sam.manutech-halabtech.com:3030/upload_premium");
-
-    xhr.upload.addEventListener("progress", (event) => {
-      if (event.lengthComputable) {
-        const progress = (event.loaded / event.total) * 100;
-        setUploadProgress(progress); // Update progress state
-      }
-    });
-
-    xhr.onload = () => {
-      if (xhr.status === 200) {
-        setIsloading(false);
-        setUploadStatus(JSON.parse(xhr.responseText).message);
-        setZipname(JSON.parse(xhr.responseText).zipname);
-        //console.log("200 res...",JSON.parse(xhr.responseText).zipname);
+  
+    const uploadUrl = "http://meow.catway.org:3030/upload_premium";
+  
+    try {
+      // Create an AbortController to manage request progress
+      const controller = new AbortController();
+      const { signal } = controller;
+  
+      // Create a Fetch request with a progress listener
+      const response = await fetch(uploadUrl, {
+        method: "POST",
+        body: formData,
+        signal
+      });
+  
+      // Check if the request was successful
+      if (response.ok) {
+        const responseData = await response.json();
+        setUploadStatus(responseData.message);
+        setZipname(responseData.zipname);
       } else {
-        setIsloading(false);
         setUploadStatus("No live Cookies");
-        //console.log("other res...",xhr.responseText);
       }
-      // Reset upload progress after upload completion
-      setUploadProgress(0);
-    };
-
-    xhr.send(formData);
+    } catch (error) {
+      console.error('Upload failed', error);
+      setUploadStatus("Upload failed");
+     
+    } finally {
+      setIsloading(false);
+      setUploadProgress(0); // Reset upload progress after upload completion
+    }
   };
+  
+
+  // const handleUpload = async (event: FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   setUploadStatus("");
+  //   setIsloading(true);
+  //   const fileInput = document.getElementById("formFile") as HTMLInputElement;
+  //   const file = fileInput.files![0];
+  //   const formData = new FormData();
+  //   formData.append("file", file);
+
+  //   formData.append("password", password);
+  //   const xhr = new XMLHttpRequest();
+  //   xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+  //   xhr.open("POST",  "http://meow.catway.org:3030/upload_premium");
+
+  //   xhr.upload.addEventListener("progress", (event) => {
+  //     if (event.lengthComputable) {
+  //       const progress = (event.loaded / event.total) * 100;
+  //       setUploadProgress(progress); // Update progress state
+  //     }
+  //   });
+
+  //   xhr.onload = () => {
+  //     if (xhr.status === 200) {
+  //       setIsloading(false);
+  //       setUploadStatus(JSON.parse(xhr.responseText).message);
+  //       setZipname(JSON.parse(xhr.responseText).zipname);
+  //       //console.log("200 res...",JSON.parse(xhr.responseText).zipname);
+  //     } else {
+  //       setIsloading(false);
+  //       setUploadStatus("No live Cookies");
+  //       //console.log("other res...",xhr.responseText);
+  //     }
+  //     // Reset upload progress after upload completion
+  //     setUploadProgress(0);
+  //   };
+
+  //   xhr.send(formData);
+  // };
 
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
